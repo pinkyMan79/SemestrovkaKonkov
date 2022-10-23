@@ -46,4 +46,37 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>load</servlet-name>
+        <servlet-class>com.miusicmaker.musmk.ProfileLoadMusickFileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>load</servlet-name>
+        <url-pattern>/load</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>get_messages</servlet-name>
+        <servlet-class>com.miusicmaker.musmk.ForumLoadMessagesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>get_messages</servlet-name>
+        <url-pattern>/get_messages</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>send_message</servlet-name>
+        <servlet-class>com.miusicmaker.musmk.ForumWriteMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>send_message</servlet-name>
+        <url-pattern>/send_message</url-pattern>
+
+    </servlet-mapping>
+
 </web-app>

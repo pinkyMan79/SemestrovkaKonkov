@@ -1,15 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.miusicmaker.musmk.model.Message" %>
+<%@ page import="java.util.List" %>
 <%@ page import="com.miusicmaker.musmk.model.User" %><%--
   Created by IntelliJ IDEA.
   User: terenin
-  Date: 20.10.2022
-  Time: 23:31
+  Date: 23.10.2022
+  Time: 13:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Profile</title>
+    <title>Title</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +29,9 @@
             background-size: cover;
             background: rgb(37, 40, 43);
             padding-bottom: 100px;
+            position: fixed;
+            left: 369px;
+            height: 134px;
         }
 
         .header-nightsky .navbar-nav>li>a {
@@ -161,101 +165,25 @@
 
         }
 
-        #wrapper{
-            position: absolute;
-            width: 320px;
-            left: 50%;
-            margin-left: -160px;
-            top: 50%;
-            margin-top: -75px;
-        }
 
-        /* === Sign in Form === */
-        #signin {
-            height: 90px;
-            width: 300px;
-            border-radius: 8px;
+        textarea {
+            color: initial;
+            display: inline-block;
+            background-color: white;
+            cursor: text;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            font: 400 13.3333px Arial;
+            border-width: 1px;
+            border-style: solid;
+            max-width: 1000px;
+            border-color: rgb(169, 169, 169);
+            padding: 2px;
+            width: 2000px;
             position: relative;
+            left: 356px;
         }
-        #signin::before {
-            display: block;
-            position: relative;
-            height: 2px;
-            background: rgb(52, 56, 61);
-            content: '';
-            top: 44px;
-            margin-left: 20px;
-            z-index: 1;
-        }
-        #signin input:first-of-type{
-            border-top-right-radius: 8px;
-            border-top-left-radius: 8px;
-        }
-        #signin input:last-of-type{
-            border-bottom-right-radius: 8px;
-            border-bottom-left-radius: 8px;
-        }
-        #signin  input[type="text"], #signin  input[type="password"], #signin button[type="submit"]{
-            background: rgb(28, 30, 33);
-            box-shadow: inset -100px -100px 0 rgb(28, 30, 33); /*Prevent yellow autofill color*/
-            color: rgb(52, 56, 61);
-        }
-        #signin  input[type="text"], #signin  input[type="password"]{
-            position: relative;
-            display: block;
-            width: 280px;
-            height: 45px;
-            border: 0;
-            outline: 0;
-            top: -2px;
-            padding: 0 0 0 20px;
-            font-weight: 700;
-        }
-        #signin  input[type="text"]:focus, #signin  input[type="password"]:focus{
-            color: rgb(255, 255, 255);
-        }
-        #signin button[type="submit"]{
-            display: block;
-            position: absolute;
-            width: 52px;
-            height: 52px;
-            color: rgb(52, 56, 61);
-            border-radius: 50px;
-            outline: 0;
-            z-index: 2;
-            top: 19px;
-            right: -24px;
-            border: 6px solid rgb(52, 56, 61);
-            font-size: 25px;
-            text-indent: 0px;
-            padding-left: 9px;
-            padding-bottom: 3px;
-            text-align: center;
-        }
-        #signin button[type="submit"]:hover{
-            color: rgb(0, 126, 165);
-            text-shadow: 0 0 10px rgb(0, 126, 165);
-            cursor: pointer;
-        }
-        #signin p {
-            color: rgb(79, 85, 97);
-            padding: 0 20px;
-            font-weight: 700;
-            font-size: 12px;
-            margin: 5px 0 0 0;
-        }
-        #signin p > a{
-            color: rgb(111, 119, 135);
-            text-decoration: none;
-        }
-        #signin p > a:hover{
-            border-bottom: 1px solid;
-        }
-
-
-
     </style>
-
 </head>
 <body>
 <div class="header-nightsky">
@@ -297,42 +225,42 @@
         </div>
     </nav>
 </div>
-<div class="hero" style="align-content: center;
-align-items: center;
-align-self: center;
-position: relative;
-left: 622px;
-border: aqua;
-font-size: 17px;
-color: aliceblue;
-margin: 15px;
-padding: 5px;">
-    <h1>Это твой профиль</h1>>
+<div>
 
-    <div class="update_info">
-        <p>Если надо что-то подредачить</p>
-        <form id="signin" method="post" action="<c:url value="/profile"/>" autocomplete="off">
-            <input type="text" id="email" name="email" placeholder="email" />
-            <input type="text" id="username" name="username" placeholder="username" />
-            <input type="password" id="pass" name="pass" placeholder="password" />
-            <input type="password" id="re_pass" name="re_pass" placeholder="repeat password" />
-            <button type="submit">&#xf0da;</button>
-        </form>
-    </div>
+    <table>
 
+        <%
+            List<Message> messages = (List<Message>) request.getAttribute("messages");
+            for (int i = 0; i < messages.size(); i++) {
+        %>
 
+        <tr>
+
+            <div class="container" style="background: rgb(106, 112, 119);border: 1px double aqua;padding: 10px;">
+
+                <h4 style="color: aqua"><%=messages.get(i).getSender()%></h4>
+                <h5 style="color: aquamarine"><%=messages.get(i).getDate()%></h5>
+                <p style="color: azure"><%=messages.get(i).getMsgRoot()%></p>
+
+            </div>
+
+            <br/>
+
+        </tr>
+
+        <%}%>
+
+    </table>
 
 </div>
+<div style="
+     border: 4px double rgb(36,49,84);
+     background: rgb(56,59,66);;
+     padding: 10px;">
 
-<div class="loadUpMusick">
-
-    <form enctype="multipart/form-data" action="${pageContext.request.contextPath}/load" method="post">
-        <p>Выбери файл на устройстве, пжалста</p>
-        <p><input type="file" name="music_file" multiple accept="audio/*">
-            <label for="mf_name"> Назови как-нибудь, попробуй rap_for_dodiks
-                <input id="mf_name" type="text" name="mf_name" placeholder="name">
-            </label>
-            <input type="submit" value="Отправить"></p>
+    <form id="signin" method="get" action="${pageContext.request.contextPath}/send_message" autocomplete="off">
+    <textarea id="msg_input" name="msg_input" placeholder="text" style="left: 356px;"></textarea>
+    <button style="top: -16px;position: relative;width: 100px;height: 50px;color: aqua; left: 369px; background: rgb(52, 56, 61);" type="submit">Отправить</button>
     </form>
 
 </div>

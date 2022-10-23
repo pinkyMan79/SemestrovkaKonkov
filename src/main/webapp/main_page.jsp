@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.miusicmaker.musmk.model.User" %><%--
   Created by IntelliJ IDEA.
   User: terenin
@@ -183,7 +184,7 @@
                         User user = (User) session.getAttribute("user");
                     %>
 
-                    <li><a href="profile.jsp"><%=user.getNickname()%></a></li>
+                    <li><a href="<c:url value="/get_messages"/>"><%=user.getNickname()%></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Па приколу)<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -195,6 +196,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> О сайте <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">За что тебе это?</a></li>
+                            <li><a href="<c:url value="/get_messages"/>">Форум</a></li>
                             <li><a href="#">В чём фишка</a></li>
                             <li><a href="#">А теперь жми сюда</a></li>
                         </ul>

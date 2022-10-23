@@ -385,6 +385,12 @@
                 game_stat_left.innerHTML = 'Score: ' + game_score;
                 game_stat_right.innerHTML = 'Level: ' + (game_level + 1);
 
+                if(game_score === 10){
+
+                    document.body.style.backgroundImage = 'url(/RqUr.gif)'
+
+                }
+
 
                 // Add or modify snake blocks on each event
                 for(var i = 0; i < snake.length; i++){
