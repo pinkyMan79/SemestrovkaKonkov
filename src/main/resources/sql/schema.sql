@@ -13,7 +13,7 @@ CREATE TABLE tester_bencher
 
 CREATE TABLE music_files(
     f_id bigserial not null ,
-    path_to_file varchar(100) not null,
+    path_to_file varchar(500) not null,
     u_id integer not null,
     m_name varchar(50) not null,
 

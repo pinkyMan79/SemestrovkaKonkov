@@ -184,12 +184,12 @@
                         User user = (User) session.getAttribute("user");
                     %>
 
-                    <li><a href="<c:url value="/get_messages"/>"><%=user.getNickname()%></a></li>
+                    <li><a href="profile.jsp"><%=user.getNickname()%></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Па приколу)<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="sneak.jsp">Змий</a></li>
-                            <li><a href="#">Попробуй разобраться с нотами</a></li>
+                            <li><a href="<c:url value="/get_notes"/>">Попробуй разобраться с нотами</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -239,7 +239,7 @@ padding: 5px;">
         <p>это что-то вроде музыкального хостинга</p>
         <p>Здесь ты можешь спокойно выкладывать любое своё музыкальное произведение</p>
         <p style="color: aqua">ВАЖНО: поддерживается формат mp3 и waw</p>
-        <p>Ну и если у тебя есть яйца попробовать выложить его на форум к слухачам</p>
+        <p>Ну и если у тебя есть яйца, попробовать выложить его на форум к слухачам</p>
         <p>Форум кстати реализован на этом сайте, так что далеко идти не надо</p>
         <p>На форуме ты и сам можешь писать что угодно и оценивать чьи либо произведения</p>
         <p>На сайте встроена система анти-токсик</p>

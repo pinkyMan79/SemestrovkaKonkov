@@ -13,9 +13,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Builder
 public class MusicFile {
 
-    String path;
-    Integer fId;
-    Integer uId;
-    String name;
+    private String path;
+    private Long fId;
+    private Long uId;
+    private String name;
 
 }

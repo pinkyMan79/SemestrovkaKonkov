@@ -40,7 +40,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        request.getRequestDispatcher("main_page.jsp");
+        request.getRequestDispatcher("/main_page.jsp").forward(request,resp);
     }
 
     @Override

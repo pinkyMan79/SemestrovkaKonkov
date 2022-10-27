@@ -324,18 +324,6 @@ padding: 5px;">
 
 </div>
 
-<div class="loadUpMusick">
-
-    <form enctype="multipart/form-data" action="${pageContext.request.contextPath}/load" method="post">
-        <p>Выбери файл на устройстве, пжалста</p>
-        <p><input type="file" name="music_file" multiple accept="audio/*">
-            <label for="mf_name"> Назови как-нибудь, попробуй rap_for_dodiks
-                <input id="mf_name" type="text" name="mf_name" placeholder="name">
-            </label>
-            <input type="submit" value="Отправить"></p>
-    </form>
-
-</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

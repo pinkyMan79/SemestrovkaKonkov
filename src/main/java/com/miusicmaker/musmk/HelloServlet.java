@@ -39,11 +39,11 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        HttpSession session = (HttpSession) request.getSession();
+        HttpSession session = request.getSession();
 
         session.setAttribute("user", user);
 
-        request.getRequestDispatcher("main_page.jsp").forward(request, response);
+        request.getRequestDispatcher("/main_page.jsp").forward(request, response);
 
     }
 
