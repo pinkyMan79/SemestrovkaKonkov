@@ -1,14 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.miusicmaker.musmk.model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: terenin
-  Date: 19.10.2022
-  Time: 16:32
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,14 +150,9 @@
                 font-size: 42px;
             }
         }
-
-
-
-
     </style>
 
 </head>
-
 <body>
 <div class="header-nightsky">
     <nav class="navbar navbar-default">
@@ -176,30 +164,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <%
-                        User user = (User) session.getAttribute("user");
-                    %>
-
-                    <li><a href="profile.jsp"><%=user.getNickname()%></a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Па приколу)<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sneak.jsp">Змий</a></li>
-                            <li><a href="<c:url value="/get_notes"/>">Попробуй разобраться с нотами</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> О сайте <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${pageContext.request.contextPath}/about.html">В чём фишка</a></li>
-                            <li><a href="<c:url value="/get_messages"/>">Форум</a></li>
-                        </ul>
-                    </li>
-                </ul>
             </div>
         </div>
     </nav>
@@ -214,26 +178,13 @@ font-size: 17px;
 color: aliceblue;
 margin: 15px;
 padding: 5px;">
-        <h1>Здесь не будет ничего кроме хедера</h1>
-        <p>Вся инфа в нём, смотри туда</p>
-        <p>Но всё-таки, здесь стоит сказать что по большому счёту</p>
-        <p>это что-то вроде музыкального хостинга</p>
-        <p>Здесь ты можешь спокойно выкладывать любое своё музыкальное произведение</p>
-        <p style="color: aqua">ВАЖНО: поддерживается формат mp3 и waw</p>
-        <p>Ну и если у тебя есть яйца, попробовать выложить его на форум к слухачам</p>
-        <p>Форум кстати реализован на этом сайте, так что далеко идти не надо</p>
-        <p>На форуме ты и сам можешь писать что угодно и оценивать чьи либо произведения</p>
-        <p>На сайте встроена система анти-токсик</p>
-        <p>так что не советую писать не конструктивную критику в адрес произведений других музыкантов</p>
-        <p>И да по жанрам пили что хочешь, но насколько я помню система анти-токсик автоматически банит рэперов, не знаю почему так :(</p>
-        <p>А ну и ещё, если ты тут по приколу, то специально для тебя я сделал змейку :)</p>
-        <p>.пам</p>
-        <p>.пу</p>
-        <p>.пам</p>
-        <p>Слушайте хорошую музыку!</p>
-    </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <h1>Привет!</h1>
+    <p>На этом сайте ты можешь много чего нестандартного для остальных сайтов</p>
+    <p>На пример, поиграть в змейку, либо потыкаться в ноты на разных инструментах</p>
+    <p>Но основной идеей является то самое тыкание в ноты, и обсуждение того что ты натыкал на форум</p>
+    <p>Тут всё просто, если по пунктам, тыкаешься, потом копируешь ноты, инструмент и постишь на форум скопированное</p>
+    <p style="color: aqua">В следующей версии добавлю переход по midi файлам по ссылке, честно, сейчас в падлу</p>
+    <p>А так всё, пробуй себя на в тыкании</p>
+</div>
 </body>
-
 </html>
