@@ -38,7 +38,7 @@ public class ForumLoadMessagesServlet extends HttpServlet {
 
         req.setAttribute("messages", messages);
 
-        req.getRequestDispatcher("/views/forum.jsp").forward(req, resp);
+        req.getRequestDispatcher("/forum.jsp").forward(req, resp);
 
     }
 

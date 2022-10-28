@@ -209,13 +209,14 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Па приколу)<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="sneak.jsp">Змий</a></li>
-                            <li><a href="#">Попробуй разобраться с нотами</a></li>
+                            <li><a href="<c:url value="/get_notes"/>">Попробуй разобраться с нотами</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> О сайте <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">За что тебе это?</a></li>
+                            <li><a href="<c:url value="/get_messages"/>">Форум</a></li>
                             <li><a href="#">В чём фишка</a></li>
                             <li><a href="#">А теперь жми сюда</a></li>
                         </ul>
