@@ -4,6 +4,7 @@
   Date: 20.10.2022
   Time: 23:46
   To change this template use File | Settings | File Templates.
+  Коли уж попросили js...
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -35,6 +36,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <%--Короче, не получилось вынести в отдельный файл, так как использую чуток java кода в инициализации переменных--%>
+
     <title>Snake v1.0</title>
     <script type="text/javascript">
         window.onload = function(){

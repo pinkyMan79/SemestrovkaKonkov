@@ -1,22 +1,21 @@
-package com.miusicmaker.musmk;
+package com.miusicmaker.musmk.servlet;
 
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
-import com.miusicmaker.musmk.model.User;
-import com.miusicmaker.musmk.repositories.UserRepositoryImpl;
+import com.miusicmaker.musmk.model.Message;
+import com.miusicmaker.musmk.repositories.MsgRepositoryImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-public class AccountsServlet extends HttpServlet {
+public class ForumLoadMessagesServlet extends HttpServlet {
 
-    private UserRepositoryImpl repository;
+    private MsgRepositoryImpl repository;
 
     @Override
     public void init() throws ServletException {
@@ -27,20 +26,20 @@ public class AccountsServlet extends HttpServlet {
                 properties.getProperty("db.password")
         );
 
-        repository = new UserRepositoryImpl(dataSource);
-
+        repository = new MsgRepositoryImpl(dataSource);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<User> users = repository.findAll();
+        List<Message> messages = repository.findAll();
 
-        req.setAttribute("accounts_list", users);
+        log(messages.toString());
 
-        req.getRequestDispatcher("/accounts_page.jsp").forward(req, resp);
+        req.setAttribute("messages", messages);
+
+        req.getRequestDispatcher("/views/forum.jsp").forward(req, resp);
 
     }
-
 
 }

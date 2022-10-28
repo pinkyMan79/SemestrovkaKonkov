@@ -1,28 +1,27 @@
-package com.miusicmaker.musmk;
+package com.miusicmaker.musmk.servlet;
 
-import com.miusicmaker.musmk.dto.UserSignIn;
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
-import com.miusicmaker.musmk.mappers.Mappers;
 import com.miusicmaker.musmk.model.User;
 import com.miusicmaker.musmk.repositories.UserRepositoryImpl;
-import com.miusicmaker.musmk.validation.AuthValidator;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import javax.sql.DataSource;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Properties;
 
-
-public class HelloServlet extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 
     private UserRepositoryImpl repository;
 
     public User user;
 
-
-    public void init() {
-
+    @Override
+    public void init() throws ServletException {
         Properties properties = TestConnection.getProperties();
 
         DataSource dataSource = new SimpleDataSource(
@@ -34,17 +33,12 @@ public class HelloServlet extends HttpServlet {
         );
 
         repository = new UserRepositoryImpl(dataSource);
-
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-        session.setAttribute("user", user);
-
-        request.getRequestDispatcher("/main_page.jsp").forward(request, response);
-
+        request.getRequestDispatcher("/main_page.jsp").forward(request,resp);
     }
 
     @Override
@@ -55,21 +49,24 @@ public class HelloServlet extends HttpServlet {
         String pass = request.getParameter("pass");
         String re_pass = request.getParameter("re_pass");
 
+        HttpSession session = request.getSession();
+
         if (pass != null && pass.equals(re_pass)){
 
             if (email != null
                     //   && AuthValidator.isValidEmail(email)
                     && login != null){
 
-                UserSignIn signUp = new UserSignIn(email, pass, re_pass, login);
+                user = (User) session.getAttribute("user");
 
-                user = Mappers.fromSignUpToUser.apply(signUp);
+                user.setEmail(email);
+                user.setNickname(login);
+                user.setPassword(pass);
 
-                repository.save(user);
-
-                request.setAttribute("user", user);
+                repository.update(user);
 
                 doGet(request, response);
+
 
             }else {
 
@@ -85,10 +82,8 @@ public class HelloServlet extends HttpServlet {
 
             out.write("Пароли не совпадают");
 
+
         }
 
-    }
-
-    public void destroy() {
     }
 }

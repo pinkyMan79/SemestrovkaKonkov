@@ -1,4 +1,4 @@
-package com.miusicmaker.musmk;
+package com.miusicmaker.musmk.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

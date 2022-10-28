@@ -1,4 +1,4 @@
-package com.miusicmaker.musmk;
+package com.miusicmaker.musmk.servlet;
 
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
 import com.miusicmaker.musmk.model.Message;

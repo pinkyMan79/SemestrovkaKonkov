@@ -1,4 +1,4 @@
-package com.miusicmaker.musmk;
+package com.miusicmaker.musmk.servlet;
 
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
 import com.miusicmaker.musmk.model.User;
@@ -8,28 +8,23 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import jakarta.servlet.http.HttpSession;
+
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
-public class LoginServlet extends HttpServlet {
+public class AccountsServlet extends HttpServlet {
 
     private UserRepositoryImpl repository;
 
-    public User user;
-
     @Override
     public void init() throws ServletException {
-
         Properties properties = TestConnection.getProperties();
-
         DataSource dataSource = new SimpleDataSource(
-
                 properties.getProperty("db.url"),
                 properties.getProperty("db.username"),
                 properties.getProperty("db.password")
-
         );
 
         repository = new UserRepositoryImpl(dataSource);
@@ -37,28 +32,14 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String login = request.getParameter("username");
-        String password = request.getParameter("pass");
+        List<User> users = repository.findAll();
 
-        if (login != null && password != null){
+        req.setAttribute("accounts_list", users);
 
-            user = repository.findByLoginAndPassword(login, password);
+        req.getRequestDispatcher("/accounts_page.jsp").forward(req, resp);
 
-        }
-
-        if (user == null){
-
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-
-        }else {
-
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            request.getRequestDispatcher("main_page.jsp").forward(request, response);
-
-        }
     }
 
 

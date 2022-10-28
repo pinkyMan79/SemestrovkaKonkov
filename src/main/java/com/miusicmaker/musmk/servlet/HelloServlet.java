@@ -1,4 +1,4 @@
-package com.miusicmaker.musmk;
+package com.miusicmaker.musmk.servlet;
 
 import com.miusicmaker.musmk.dto.UserSignIn;
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
@@ -6,24 +6,22 @@ import com.miusicmaker.musmk.mappers.Mappers;
 import com.miusicmaker.musmk.model.User;
 import com.miusicmaker.musmk.repositories.UserRepositoryImpl;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Properties;
 
-public class ProfileServlet extends HttpServlet {
+
+public class HelloServlet extends HttpServlet {
 
     private UserRepositoryImpl repository;
 
     public User user;
 
-    @Override
-    public void init() throws ServletException {
+
+    public void init() {
+
         Properties properties = TestConnection.getProperties();
 
         DataSource dataSource = new SimpleDataSource(
@@ -35,12 +33,17 @@ public class ProfileServlet extends HttpServlet {
         );
 
         repository = new UserRepositoryImpl(dataSource);
+
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         HttpSession session = request.getSession();
-        request.getRequestDispatcher("/main_page.jsp").forward(request,resp);
+
+        session.setAttribute("user", user);
+
+        request.getRequestDispatcher("/main_page.jsp").forward(request, response);
+
     }
 
     @Override
@@ -51,24 +54,21 @@ public class ProfileServlet extends HttpServlet {
         String pass = request.getParameter("pass");
         String re_pass = request.getParameter("re_pass");
 
-        HttpSession session = request.getSession();
-
         if (pass != null && pass.equals(re_pass)){
 
             if (email != null
                     //   && AuthValidator.isValidEmail(email)
                     && login != null){
 
-                user = (User) session.getAttribute("user");
+                UserSignIn signUp = new UserSignIn(email, pass, re_pass, login);
 
-                user.setEmail(email);
-                user.setNickname(login);
-                user.setPassword(pass);
+                user = Mappers.fromSignUpToUser.apply(signUp);
 
-                repository.update(user);
+                repository.save(user);
+
+                request.setAttribute("user", user);
 
                 doGet(request, response);
-
 
             }else {
 
@@ -84,8 +84,10 @@ public class ProfileServlet extends HttpServlet {
 
             out.write("Пароли не совпадают");
 
-
         }
 
+    }
+
+    public void destroy() {
     }
 }

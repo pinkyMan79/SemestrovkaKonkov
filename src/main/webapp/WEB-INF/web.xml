@@ -14,7 +14,7 @@
     
     <servlet>
         <servlet-name>hello</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.HelloServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.HelloServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>hello</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>accounts</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.AccountsServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.AccountsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -34,7 +34,7 @@
 
     <servlet>
         <servlet-name>profile</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.ProfileServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.ProfileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -45,7 +45,7 @@
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.LoginServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>load</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.LoadMusickFileServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.LoadMusickFileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -67,7 +67,7 @@
 
     <servlet>
         <servlet-name>get_messages</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.ForumLoadMessagesServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.ForumLoadMessagesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -78,7 +78,7 @@
 
     <servlet>
         <servlet-name>send_message</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.ForumWriteMessageServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.ForumWriteMessageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -89,7 +89,7 @@
 
     <servlet>
         <servlet-name>get_notes</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.ButtonsNoteSheetServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.ButtonsNoteSheetServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -100,7 +100,7 @@
 
     <servlet>
         <servlet-name>play_notes</servlet-name>
-        <servlet-class>com.miusicmaker.musmk.NoteSheetServlet</servlet-class>
+        <servlet-class>com.miusicmaker.musmk.servlet.NoteSheetServlet</servlet-class>
     </servlet>
     <servlet-mapping>
 
@@ -108,5 +108,14 @@
         <url-pattern>/play_notes</url-pattern>
 
     </servlet-mapping>
+
+    <filter>
+        <filter-name>login_filter</filter-name>
+        <filter-class>com.miusicmaker.musmk.filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>login_filter</filter-name>
+        <url-pattern>/login_filter</url-pattern>
+    </filter-mapping>
 
 </web-app>
