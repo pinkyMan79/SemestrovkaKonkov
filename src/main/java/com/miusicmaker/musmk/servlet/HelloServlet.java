@@ -5,6 +5,7 @@ import com.miusicmaker.musmk.jdbc.SimpleDataSource;
 import com.miusicmaker.musmk.mappers.Mappers;
 import com.miusicmaker.musmk.model.User;
 import com.miusicmaker.musmk.repositories.UserRepositoryImpl;
+import com.miusicmaker.musmk.validation.AuthValidator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
@@ -57,7 +58,7 @@ public class HelloServlet extends HttpServlet {
         if (pass != null && pass.equals(re_pass)){
 
             if (email != null
-                    //   && AuthValidator.isValidEmail(email)
+                    //&& AuthValidator.isValidEmail(email)
                     && login != null){
 
                 UserSignIn signUp = new UserSignIn(email, pass, re_pass, login);

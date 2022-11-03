@@ -14,8 +14,8 @@ import org.jfugue.player.Player;
 
 import jakarta.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -79,10 +79,16 @@ public class NoteSheetServlet extends HttpServlet {
 
         req.setAttribute("music", file);
 
+        File fileTxt = new File("/home/terenin/Downloads/glassfish6/glassfish/domains/domain1/txtMidiFile/" + mUUID + ".txt");
+        FileOutputStream outpuStream = new FileOutputStream(fileTxt);
+
+        outpuStream.write(values.getBytes(StandardCharsets.UTF_8));
+
         //player.play("A1 B1 C1 D1 E1 F1 G1");
         player.play(voice);
 
         repository.save(MusicFile.builder().name(mUUID.toString()).path(file.getPath()).uId(u.getId()).build());
+        repository.save(MusicFile.builder().name(mUUID.toString() + ".txt").path(file.getPath()).uId(u.getId()).build());
 
         //session.setAttribute("n_s", nt_str.toString());
 
@@ -95,6 +101,5 @@ public class NoteSheetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
-
 
 }

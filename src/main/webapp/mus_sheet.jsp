@@ -400,7 +400,7 @@
     </form>
 
 </div>
-<form method="get" action="<c:url value="/play_notes"/>">
+<form method="get" style="display: inline-block; alignment: center" action="<c:url value="/play_notes"/>">
 
     <input name="tempo" value="120">
     <input name="instrument" value="Steel_String_Guitar">

@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.miusicmaker.musmk.model.User" %><%--
+<%@ page import="com.miusicmaker.musmk.model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.miusicmaker.musmk.model.MusicFile" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: terenin
   Date: 20.10.2022
@@ -320,11 +323,46 @@ padding: 5px;">
             <button type="submit">&#xf0da;</button>
         </form>
     </div>
-
-
-
 </div>
 
+<%--<div>
+
+    <table>
+
+        <th>Name</th>
+        <th>Path</th>
+        <th>File ID</th>
+
+        <%
+
+            List<MusicFile> musicFiles = (List<MusicFile>) session.getAttribute("musicalFiles");
+
+            if (musicFiles == null){
+
+                musicFiles = new ArrayList<>();
+                musicFiles.add((MusicFile.builder().name("1").path("1").uId(2L).fId(1234L).build()));
+            }else {
+
+                musicFiles =  (List<MusicFile>) session.getAttribute("musicalFiles");
+
+            }
+
+            for (int i = 0; i < musicFiles.size(); i++) {
+        %>
+
+        <tr>
+
+            <td><%=musicFiles.get(i).getName()%></td>
+            <td><%=musicFiles.get(i).getPath()%></td>
+            <td><%=musicFiles.get(i).getFId()%></td>
+
+        </tr>
+
+        <%}%>
+
+    </table>
+
+</div>--%>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
