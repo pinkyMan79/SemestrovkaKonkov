@@ -5,12 +5,19 @@
          version="4.0">
 
         <context-param>
-            <description>Location to store uploaded file</description>
             <param-name>file-upload</param-name>
             <param-value>
                 /home/terenin/Downloads/glassfish6/glassfish/domains/domain1
             </param-value>
         </context-param>
+
+    <listener>
+        <listener-class>com.miusicmaker.musmk.listeners.MyContextListenerForDataSourceAccess</listener-class>
+    </listener>
+
+    <!--<listener>
+        <listener-class>com.miusicmaker.musmk.listeners.AbsolutePathForFileListener</listener-class>
+    </listener>-->
     
     <servlet>
         <servlet-name>hello</servlet-name>
@@ -109,13 +116,35 @@
 
     </servlet-mapping>
 
-    <filter>
+    <servlet>
+        <servlet-name>upload</servlet-name>
+        <servlet-class>com.miusicmaker.musmk.servlet.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/upload</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>download</servlet-name>
+        <servlet-class>com.miusicmaker.musmk.servlet.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>download</servlet-name>
+        <url-pattern>/download</url-pattern>
+
+    </servlet-mapping>
+
+    <!--<filter>
         <filter-name>login_filter</filter-name>
         <filter-class>com.miusicmaker.musmk.filters.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>login_filter</filter-name>
         <url-pattern>/login_filter</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
 </web-app>

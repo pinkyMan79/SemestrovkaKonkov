@@ -23,17 +23,7 @@ public class HelloServlet extends HttpServlet {
 
     public void init() {
 
-        Properties properties = TestConnection.getProperties();
-
-        DataSource dataSource = new SimpleDataSource(
-
-                properties.getProperty("db.url"),
-                properties.getProperty("db.username"),
-                properties.getProperty("db.password")
-
-        );
-
-        repository = new UserRepositoryImpl(dataSource);
+        repository = new UserRepositoryImpl((DataSource) getServletContext().getAttribute("datasource"));
 
     }
 

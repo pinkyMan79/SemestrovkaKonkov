@@ -190,6 +190,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="sneak.jsp">Змий</a></li>
                             <li><a href="<c:url value="/get_notes"/>">Попробуй разобраться с нотами</a></li>
+                            <li><a href="<c:url value="file_load_up.jsp"/>">Загрузи файл с нотами сюда</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

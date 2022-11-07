@@ -34,14 +34,7 @@ public class LoadMusickFileServlet extends HttpServlet {
 
         filePath = getServletContext().getInitParameter("file-upload");
 
-        Properties properties = TestConnection.getProperties();
-        DataSource dataSource = new SimpleDataSource(
-                properties.getProperty("db.url"),
-                properties.getProperty("db.username"),
-                properties.getProperty("db.password")
-        );
-
-        repository = new MusicFileRepositoryImpl(dataSource);
+        repository = new MusicFileRepositoryImpl((DataSource) getServletContext().getAttribute("datasourse"));
 
     }
 

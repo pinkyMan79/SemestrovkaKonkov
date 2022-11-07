@@ -2,6 +2,7 @@ package com.miusicmaker.musmk.servlet;
 
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
 import com.miusicmaker.musmk.model.User;
+import com.miusicmaker.musmk.repositories.MsgRepositoryImpl;
 import com.miusicmaker.musmk.repositories.UserRepositoryImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -22,17 +23,9 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        Properties properties = TestConnection.getProperties();
 
-        DataSource dataSource = new SimpleDataSource(
+        repository = new UserRepositoryImpl((DataSource) getServletContext().getAttribute("datasource"));
 
-                properties.getProperty("db.url"),
-                properties.getProperty("db.username"),
-                properties.getProperty("db.password")
-
-        );
-
-        repository = new UserRepositoryImpl(dataSource);
     }
 
     @Override

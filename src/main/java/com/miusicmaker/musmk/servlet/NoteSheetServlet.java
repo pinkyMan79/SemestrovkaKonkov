@@ -3,6 +3,7 @@ package com.miusicmaker.musmk.servlet;
 import com.miusicmaker.musmk.jdbc.SimpleDataSource;
 import com.miusicmaker.musmk.model.MusicFile;
 import com.miusicmaker.musmk.model.User;
+import com.miusicmaker.musmk.repositories.MsgRepositoryImpl;
 import com.miusicmaker.musmk.repositories.MusicFileRepositoryImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -27,14 +28,7 @@ public class NoteSheetServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        Properties properties = TestConnection.getProperties();
-        DataSource dataSource = new SimpleDataSource(
-                properties.getProperty("db.url"),
-                properties.getProperty("db.username"),
-                properties.getProperty("db.password")
-        );
-
-        repository = new MusicFileRepositoryImpl(dataSource);
+        repository = new MusicFileRepositoryImpl((DataSource) getServletContext().getAttribute("datasource"));
 
     }
 
@@ -73,13 +67,13 @@ public class NoteSheetServlet extends HttpServlet {
 
         voice.setInstrument(req.getParameter("instrument"));
 
-        File file = new File("/home/terenin/Downloads/glassfish6/glassfish/domains/domain1/" + mUUID + ".mid");
+        File file = new File("/home/lino/Downloads/glassfish6/glassfish/domains/domain1/" + mUUID + ".mid");
 
         MidiFileManager.savePatternToMidi(voice, file);
 
         req.setAttribute("music", file);
 
-        File fileTxt = new File("/home/terenin/Downloads/glassfish6/glassfish/domains/domain1/txtMidiFile/" + mUUID + ".txt");
+        File fileTxt = new File("/home/lino/Documents/musmk/src/main/webapp/WEB-INF/txtMidi." + mUUID + ".txt");
         FileOutputStream outpuStream = new FileOutputStream(fileTxt);
 
         outpuStream.write(values.getBytes(StandardCharsets.UTF_8));

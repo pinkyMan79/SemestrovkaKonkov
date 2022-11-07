@@ -17,23 +17,18 @@ import java.util.Properties;
 
 public class ForumWriteMessageServlet extends HttpServlet {
 
-    private Message msg;
     private MsgRepositoryImpl repository;
 
     @Override
     public void init() throws ServletException {
-        Properties properties = TestConnection.getProperties();
-        DataSource dataSource = new SimpleDataSource(
-                properties.getProperty("db.url"),
-                properties.getProperty("db.username"),
-                properties.getProperty("db.password")
-        );
 
-        repository = new MsgRepositoryImpl(dataSource);
+        repository = new MsgRepositoryImpl((DataSource) getServletContext().getAttribute("datasource"));
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
@@ -43,7 +38,12 @@ public class ForumWriteMessageServlet extends HttpServlet {
         String req_date = new Date().toString();
         Long req_uId = user.getId();
 
-        Message message = Message.builder().date(req_date).uId(req_uId).msgRoot(req_msgText).sender(req_sender).build();
+        Message message = Message.builder()
+                .date(req_date)
+                .uId(req_uId)
+                .msgRoot(req_msgText)
+                .sender(req_sender)
+                .build();
 
         repository.save(message);
 

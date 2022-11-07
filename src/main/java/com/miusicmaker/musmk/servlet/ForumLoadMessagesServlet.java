@@ -19,14 +19,9 @@ public class ForumLoadMessagesServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        Properties properties = TestConnection.getProperties();
-        DataSource dataSource = new SimpleDataSource(
-                properties.getProperty("db.url"),
-                properties.getProperty("db.username"),
-                properties.getProperty("db.password")
-        );
 
-        repository = new MsgRepositoryImpl(dataSource);
+        repository = new MsgRepositoryImpl((DataSource) getServletContext().getAttribute("datasource"));
+
     }
 
     @Override
